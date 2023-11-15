@@ -1,0 +1,5 @@
+version: '3.4'
+
+services:
+  rats:
+    image: docker.io/library/rats:0.0.1-SNAPSHOT
