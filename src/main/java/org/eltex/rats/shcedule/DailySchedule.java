@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 
 import java.text.DateFormat;
@@ -23,11 +22,6 @@ public class DailySchedule {
 
     private final int redmineTimeout;
     private final String authToken;
-
-    @PostConstruct
-    private void init() throws UnirestException {
-        createDailyTimeSpent();
-    }
 
     @Autowired
     private DailySchedule(Logger logger,

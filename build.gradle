@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'org.eltex'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 java {
     sourceCompatibility = '21'
@@ -24,6 +24,14 @@ dependencies {
 
 tasks.named('bootBuildImage') {
     builder = 'paketobuildpacks/builder-jammy-base:latest'
+    imageName = "dmitriiazurecloud/${project.name}:${project.version}"
+    publish = true
+    docker {
+        publishRegistry {
+            username = "dmitriiazurecloud"
+            password = "qwe"
+        }
+    }
 }
 
 
