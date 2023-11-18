@@ -32,7 +32,7 @@ public class DailySchedule {
         this.authToken = authToken;
     }
 
-    @Scheduled(cron = "45 13 * * *")
+    @Scheduled(cron = "0 45 13 * * MON-FRI")
     public void createDailyTimeSpent() throws UnirestException {
         logger.info("[DAILY SCHEDULE]: Start request for creating daily time spent...");
 
