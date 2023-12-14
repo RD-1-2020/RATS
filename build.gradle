@@ -34,6 +34,11 @@ tasks.named('bootBuildImage') {
     }
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.eltex.rats.RedmineAutoTimeSpenderApplication'
+    }
+}
 
 tasks.named('test') {
     useJUnitPlatform()
