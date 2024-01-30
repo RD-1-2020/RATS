@@ -18,19 +18,21 @@ import java.util.Calendar;
 @Lazy(false)
 public class DailySchedule {
     private final DateFormat redmineDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private static final String MAIN_VERSION_TASK = "260767";
     private final Logger logger;
 
     private final int redmineTimeout;
     private final String authToken;
+    private final String mainVersionTask;
 
     @Autowired
     private DailySchedule(Logger logger,
                           @Value("${auth.credentials.base64}") String authToken,
-                          @Value("${redmine.timeout:10000}") int redmineTimeout) {
+                          @Value("${redmine.timeout:10000}") int redmineTimeout,
+                          @Value("${redmine.main.task}") String mainVersionTask) {
         this.logger = logger;
         this.redmineTimeout = redmineTimeout;
         this.authToken = authToken;
+        this.mainVersionTask = mainVersionTask;
     }
 
     @Scheduled(cron = "0 45 13 * * MON-FRI")
@@ -43,8 +45,8 @@ public class DailySchedule {
                 .header("Authorization", "Basic " + authToken)
                 .field("utf8", "✓")
                 .field("back_url", "http://red.eltex.loc/issues/260767")
-                .field("issue_id", MAIN_VERSION_TASK)
-                .field("time_entry[issue_id]", MAIN_VERSION_TASK)
+                .field("issue_id", mainVersionTask)
+                .field("time_entry[issue_id]", mainVersionTask)
                 .field("time_entry[spent_on]", redmineDateFormat.format(Calendar.getInstance().getTime()))
                 .field("time_entry[hours]", "0,3")
                 .field("time_entry[comments]", "Daily")
