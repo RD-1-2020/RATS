@@ -35,7 +35,7 @@ public class DailySchedule {
         this.mainVersionTask = mainVersionTask;
     }
 
-    @Scheduled(cron = "0 45 13 * * MON-FRI")
+    @Scheduled(cron = "${daily.cron}")
     public void createDailyTimeSpent() throws UnirestException {
         logger.info("[DAILY SCHEDULE]: Start request for creating daily time spent...");
 
