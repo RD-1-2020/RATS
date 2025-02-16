@@ -48,14 +48,14 @@ public class DailySchedule {
                 .field("issue_id", mainVersionTask)
                 .field("time_entry[issue_id]", mainVersionTask)
                 .field("time_entry[spent_on]", redmineDateFormat.format(Calendar.getInstance().getTime()))
-                .field("time_entry[hours]", "0,3")
+                .field("time_entry[hours]", "0,5")
                 .field("time_entry[comments]", "Daily")
                 .field("time_entry[activity_id]", "10")
                 .field("continue", "Создать+и+продолжить")
                 .asString();
 
         if (response.getStatus() != 201) {
-            logger.error("[DAILY SCHEDULE]: WTF! Can't create daily meeting time spent!");
+            logger.error("[DAILY SCHEDULE]: WTF! Can't create daily meeting time spent! Response {}", response);
             return;
         }
 
