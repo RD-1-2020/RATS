@@ -1,14 +1,15 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.1.5'
-    id 'io.spring.dependency-management' version '1.1.3'
+    id 'org.springframework.boot' version '3.5.3'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'org.eltex'
-version = '2.1.0'
+version = '3.0.0'
 
 java {
-    sourceCompatibility = '21'
+    targetCompatibility = '24'
+    sourceCompatibility = '24'
 }
 
 repositories {
@@ -17,7 +18,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -25,7 +26,6 @@ dependencies {
 tasks.named('bootBuildImage') {
     builder = 'paketobuildpacks/builder-jammy-base:latest'
     imageName = "rats:${project.version}"
-
 }
 
 jar {
